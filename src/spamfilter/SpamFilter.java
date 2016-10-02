@@ -10,13 +10,17 @@ package spamfilter;
  * @author Caleb
  */
 import java.util.Properties;
+import javax.mail.BodyPart;
 
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.NoSuchProviderException;
 import javax.mail.Session;
 import javax.mail.Store;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMultipart;
 
 
 
@@ -49,12 +53,19 @@ public class SpamFilter {
 
       for (int i = 0, n = messages.length; i < n; i++) {
          Message message = messages[i];
+            //  Multipart mmp = new Multipart();
+          //  BodyPart mbp1 = new BodyPart();
+       if(  message.isMimeType("multipart/*")){
+           Multipart mmp = (Multipart) message.getContent();
+           BodyPart mbp1 = (BodyPart) mmp.getBodyPart(0);
          System.out.println("---------------------------------");
          System.out.println("Email Number " + (i + 1));
          System.out.println("Subject: " + message.getSubject());
          System.out.println("From: " + message.getFrom()[0]);
          System.out.println("Text: " + message.getContent().toString());
-         
+         System.out.println("Text Description: " + mbp1.getContent().toString());
+      }
+                
 
       }
 
