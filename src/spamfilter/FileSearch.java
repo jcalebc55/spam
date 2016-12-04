@@ -38,8 +38,8 @@ public class FileSearch {
                      try {
                          Connection con = DriverManager.getConnection(host, uname,passwd);
                        Statement st = con.createStatement();   
-                        String q1 = "insert into dom_name values ('vivek')"; 
-                         st.executeUpdate(q1);
+                        //String q1 = "insert into dom_name values ('vivek')"; 
+                        // st.executeUpdate(q1);
                          st.close();
                      } catch (SQLException ex) {
                          Logger.getLogger(FileSearch.class.getName()).log(Level.SEVERE, null, ex);
